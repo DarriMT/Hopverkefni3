@@ -29,7 +29,8 @@ BEGIN
     FROM [H10].[factInventory_stg] src
     WHERE src.[rowBatchKey] = @BatchId
         AND ([storeId] IS NULL OR [productId] IS NULL OR [inStock] IS NULL)
-    RETURN 0;
+    SELECT 0 AS ReturnValue BREAK;
+    -- RETURN 0;
     END;
 
 
