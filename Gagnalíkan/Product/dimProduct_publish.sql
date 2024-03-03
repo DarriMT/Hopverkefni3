@@ -45,8 +45,6 @@ WHERE src.[rowBatchKey] = @BatchId
        src.[price] < 0);
 
 
-    -- Optionally, you can log more detailed information about the error if needed.
-
     -- RETURN; -- You can choose to return here or just let the procedure continue to the next batch without stopping.
 END;
 
