@@ -57,6 +57,7 @@ BEGIN
         INSERT ([id], [date], [year], [monthNo], [monthName], [YYYY-MM], [week], [yearWeek], [rowBatchKey])
         VALUES (src.[id], src.[date], src.[year], src.[monthNo], src.[monthName], src.[YYYY-MM], src.[week], src.[yearWeek], src.[rowBatchKey]);
     -- Return 1 to indicate success
-    SELECT 1 AS ReturnValue;
+    SELECT 0 AS ReturnValue BREAK;
+    -- SELECT 1 AS ReturnValue;
 END;
 GO
