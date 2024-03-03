@@ -35,7 +35,8 @@ BEGIN
     WHERE src.[rowBatchKey] = @BatchId
         AND ([storeId] IS NULL OR [productId] IS NULL OR [date] IS NULL 
         OR [receipt] IS NULL OR [unitsSold] IS NULL)
-    RETURN 0;
+    SELECT 0 AS ReturnValue BREAK;
+    -- RETURN 0;
     END;
 
     -- Proceed with the data manipulation (MERGE) if data quality checks pass
