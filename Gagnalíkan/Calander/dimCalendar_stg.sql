@@ -2,15 +2,14 @@ DROP TABLE if exists [H10].[dimCalendar_stg]
 go
 CREATE TABLE [H10].[dimCalendar_stg]
 (
-[id] [int] identity(1,1) not null
-, [rowKey] [nvarchar](200) not null
-, [date] [datetime]
-, [year] int
-, [monthNo] int
-, [monthName] [nvarchar](12)
-, [YYYY-MM] [nvarchar](7)
-, [week] int
-, [yearWeek] [nvarchar](200)
+[id] [int] identity(1,1) not null,
+	[date] [date], 
+	[year] [nvarchar](4) ,  
+	[monthNo] [nvarchar](2) ,
+	[monthName] [nvarchar](12),
+	[YYYY-MM] [nvarchar](7) ,
+	[week] [nvarchar](2) 
+    ,[yearWeek] [nvarchar](7)
 -- CTRL
 , [rowBatchKey] [int] not null
 , [rowCreated] [datetime] not null default getutcdate()
@@ -18,5 +17,5 @@ CREATE TABLE [H10].[dimCalendar_stg]
 );
 go
 create unique index UIX_dimCalendar_stg_BatchId_rowKey on [H10].[dimCalendar_stg]
-([rowBatchKey],[rowKey]);
+([rowBatchKey],[id]);
 go
