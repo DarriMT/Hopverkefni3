@@ -29,7 +29,8 @@ BEGIN
     FROM [H10].[dimStores_stg] src
     WHERE src.[rowBatchKey] = @BatchId
         AND ([name] IS NULL OR [city] IS NULL OR [location] IS NULL)
-    RETURN 0;
+    SELECT 0 AS ReturnValue BREAK;
+    -- RETURN 0;
     END;
 
     -- Proceed with the data manipulation (MERGE) if data quality checks pass
