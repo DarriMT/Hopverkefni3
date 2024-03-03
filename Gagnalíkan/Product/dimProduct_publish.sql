@@ -43,7 +43,7 @@ WHERE src.[rowBatchKey] = @BatchId
        src.[cost] < 0 OR 
        src.[price] IS NULL OR 
        src.[price] < 0);
-
+    SELECT 0 AS ReturnValue BREAK;
     Return 0;
     -- RETURN; -- You can choose to return here or just let the procedure continue to the next batch without stopping.
 END;
