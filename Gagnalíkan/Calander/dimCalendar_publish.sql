@@ -16,23 +16,21 @@ BEGIN
     SELECT
         src.[rowKey] AS TableRowId,
         'dimCalendar_stg' AS TableName,
+    CASE
+        WHEN src.[year] != DATENAME ( yyyy , src.[date] ) THEN "year"
+        WHEN src.[monthNo] != DATENAME ( MM , src.[date] ) THEN 'monthNo'
+        WHEN src.[monthName] != DATENAME ( MMMMM , src.[date] ) THEN 'monthName'
+        WHEN src.[YYYY-MM] != FORMAT(src.[date], 'yyyy-MM') THEN 'YYYY-MM'
+        WHEN src.[week] != DATEPART(iso_week, src.[date]) THEN 'week'
+        WHEN src.[yearWeek] != FORMAT(src.[date], 'yyyy-' + DATEPART(iso_week, src.[date])) THEN 'yearWeek'
+    END AS ColumnName,
         CASE
-            WHEN src.[date] IS NULL THEN 'date'
-            WHEN src.[year] IS NULL THEN 'year'
-            WHEN src.[monthNo] IS NULL THEN 'monthNo'
-            WHEN src.[monthName] IS NULL THEN 'monthName'
-            WHEN src.[YYYY-MM] IS NULL THEN 'YYYY-MM'
-            WHEN src.[week] IS NULL THEN 'week'
-            WHEN src.[yearWeek] IS NULL THEN 'yearWeek'
-        END AS ColumnName,
-        CASE
-            WHEN src.[date] IS NULL THEN 'NULL'
-            WHEN src.[year] IS NULL THEN 'NULL'
-            WHEN src.[monthNo] IS NULL THEN 'NULL'
-            WHEN src.[monthName] IS NULL THEN 'NULL'
-            WHEN src.[YYYY-MM] IS NULL THEN 'NULL'
-            WHEN src.[week] IS NULL THEN 'NULL'
-            WHEN src.[yearWeek] IS NULL THEN 'NULL'
+        WHEN src.[year] != DATENAME ( yyyy , src.[date] ) THEN "Wrong Format"
+        WHEN src.[monthNo] != DATENAME ( MM , src.[date] ) THEN 'monthNWrong Format'
+        WHEN src.[monthName] != DATENAME ( MMMMM , src.[date] ) THEN 'Wrong Format'
+        WHEN src.[YYYY-MM] != FORMAT(src.[date], 'yyyy-MM') THEN 'Wrong Format'
+        WHEN src.[week] != DATEPART(iso_week, src.[date]) THEN 'Wrong Format'
+        WHEN src.[yearWeek] != FORMAT(src.[date], 'yyyy-' + DATEPART(iso_week, src.[date])) THEN 'Wrong Format'
         END AS ErrorValue
     FROM [H10].[dimCalendar_stg] src
     WHERE src.[rowBatchKey] = @BatchId
