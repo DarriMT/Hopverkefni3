@@ -24,14 +24,15 @@
 -- go
 
 
--- Nýja 
+-- Nýja
+DROP TABLE if exists [h10].[dimCalendar]
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [h10].[dimCalendar](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[calanderDate] [date] NOT NULL, -- endurskýrt því date er datatype
+	[date] [date] NOT NULL, 
 	[year] [nvarchar](4) NOT NULL,  
 	[monthNo] [nvarchar](2) NOT NULL,
 	[monthName] [nvarchar](12) NOT NULL,

@@ -35,7 +35,7 @@ BEGIN
     WHERE src.[rowBatchKey] = @BatchId
         AND ([storeId] IS NULL OR [productId] IS NULL OR [date] IS NULL 
         OR [receipt] IS NULL OR [unitsSold] IS NULL)
-    SELECT 0 AS ReturnValue BREAK;
+    SELECT 0 AS ReturnValue;
     -- RETURN 0;
     END;
 

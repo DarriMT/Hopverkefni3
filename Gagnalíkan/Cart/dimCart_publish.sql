@@ -25,7 +25,7 @@ BEGIN
     FROM [H10].[dimCart_stg] src
     WHERE src.[rowBatchKey] = @BatchId
         AND ([receipt] IS NULL)
-    SELECT 0 AS ReturnValue BREAK;
+    SELECT 0 AS ReturnValue;
     -- RETURN 0;
     END;
 
