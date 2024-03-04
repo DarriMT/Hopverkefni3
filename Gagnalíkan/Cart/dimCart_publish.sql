@@ -25,8 +25,6 @@ BEGIN
     FROM [H10].[dimCart_stg] src
     WHERE src.[rowBatchKey] = @BatchId
         AND ([receipt] IS NULL)
-    SELECT 0 AS ReturnValue;
-    -- RETURN 0;
     END;
 
     -- Proceed with the data manipulation (MERGE) if data quality checks pass

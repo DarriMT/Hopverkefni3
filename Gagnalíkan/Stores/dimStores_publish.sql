@@ -29,7 +29,7 @@ BEGIN
     FROM [H10].[dimStores_stg] src
     WHERE src.[rowBatchKey] = @BatchId
         AND ([name] IS NULL OR [city] IS NULL OR [location] IS NULL)
-    SELECT 0 AS ReturnValue;
+    -- SELECT 0 AS ReturnValue;
     -- RETURN 0;
     END;
 
